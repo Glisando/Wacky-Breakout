@@ -1,2 +1,8 @@
-paddleMoveUnitsPerSecond,ballImpulseForce
-10,200
+paddleMoveUnitsPerSecond,ballImpulseForce,minBallSpawnTime,maxBallSpawnTime,ballsNumber,
+10,200,5,10,5,
+
+standardBlockSpawnChance,bonusBlockSpawnChance,freezerBlockSpawnChance,speedupBlockSpawnChance,
+0.7,0.3,0.05,0.05,
+
+standardBlockScorePoints,bonusBlockScorePoints,freezerBlockScorePoints,speedupBlockScorePoints
+1,2,5,5
