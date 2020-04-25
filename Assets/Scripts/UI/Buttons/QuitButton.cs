@@ -6,6 +6,8 @@ public class QuitButton : MonoBehaviour
 {
     public void OnClickQuitButton()
     {
+        AudioManager.Play(AudioClipName.Click);
+
         Application.Quit();
     }
 }

@@ -7,6 +7,8 @@ public class HelpButton : MonoBehaviour
 {
     public void OnClickHelpButton()
     {
+        AudioManager.Play(AudioClipName.Click);
+
         SceneManager.LoadScene("Help");
     }
 }

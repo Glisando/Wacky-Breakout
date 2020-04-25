@@ -26,6 +26,8 @@ public class Block : MonoBehaviour
 
         if (collision.gameObject.TryGetComponent<Ball>(out ball))
         {
+            AudioManager.Play(AudioClipName.BlockHit);
+
             OnBlockDeath(scorePoints);
 
             if (_blockType != BlockType.Standard && _blockType != BlockType.Bonus)

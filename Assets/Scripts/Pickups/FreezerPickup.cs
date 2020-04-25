@@ -17,6 +17,7 @@ public class FreezerPickup : PickupBlock
     private void OnCollisionEnter2D(Collision2D collision)
     {
         OnFreezerPickup();
+        AudioManager.Play(AudioClipName.Freeze);
         Destroy(gameObject);
     }
 }

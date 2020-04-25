@@ -10,6 +10,8 @@ public class GameOverPanel : MonoBehaviour
 
     private void OnEnable()
     {
+        AudioManager.Play(AudioClipName.GameOver);
+
         Time.timeScale = 0;
         _scoreText.text = "Score: " + _uiController.Score;
     }

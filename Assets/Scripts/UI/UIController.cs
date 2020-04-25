@@ -35,7 +35,7 @@ public class UIController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !_gameOverPanel.activeSelf && !_winPanel.activeSelf)
         {
             OnClickPauseButton();
         }
@@ -70,6 +70,8 @@ public class UIController : MonoBehaviour
 
     public void OnClickPauseButton()
     {
+        AudioManager.Play(AudioClipName.Click);
+
         Time.timeScale = 0;
         _pauseMenu.SetActive(true);
     }

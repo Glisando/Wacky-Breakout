@@ -7,6 +7,7 @@ public class PlayButton : MonoBehaviour
 {
     public void OnClickPlayButton()
     {
+        AudioManager.Play(AudioClipName.Click);
         SceneManager.LoadScene("Play");
     }
 }

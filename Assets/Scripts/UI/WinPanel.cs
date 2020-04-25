@@ -10,6 +10,8 @@ public class WinPanel : MonoBehaviour
 
     private void OnEnable()
     {
+        AudioManager.Play(AudioClipName.Win);
+
         Time.timeScale = 0;
         _scoreText.text = "Score: " + _uiController.Score;
     }

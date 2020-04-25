@@ -7,6 +7,7 @@ public class HomeButton : MonoBehaviour
 {
     public void OnClickHomeButton()
     {
+        AudioManager.Play(AudioClipName.Click);
         SceneManager.LoadScene("MainMenu");
     }
 }

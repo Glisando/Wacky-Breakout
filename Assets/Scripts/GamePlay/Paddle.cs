@@ -70,6 +70,8 @@ public class Paddle : MonoBehaviour
 
         if (coll.gameObject.TryGetComponent<Ball>(out ballScript))
         {
+            AudioManager.Play(AudioClipName.PaddleHit);
+
             if (coll.GetContact(0).point.y >= _topEdge)
             {
                 // calculate new ball direction

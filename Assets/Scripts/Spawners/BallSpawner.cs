@@ -32,6 +32,7 @@ public class BallSpawner : MonoBehaviour
 
         _cooldownTimer = gameObject.AddComponent<Timer>();
 
+        // start listening event to spawn new ball 
         Ball.OnDeath += OnBallDeath;
 
         SetSpawnCorners();
