@@ -8,12 +8,20 @@ public class UIController : MonoBehaviour
 
     [SerializeField] Text _scoreText;
     [SerializeField] Text _ballsLeftText;
+    [SerializeField] GameObject _pauseMenu;
+    [SerializeField] GameObject _gameOverPanel;
+    [SerializeField] GameObject _winPanel;
 
     string _scoreTemplate = "Score: ";
     string _ballsLeftTemplate = "Balls left: ";
 
     float _ballsLeft;
     int _score = 0;
+
+    public int Score
+    {
+        get { return _score; }
+    }
 
     void Start()
     {
@@ -23,6 +31,23 @@ public class UIController : MonoBehaviour
 
         Ball.OnDeath += DecreaseBallsNumber;
         Block.OnBlockDeath += IncreaseScore;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OnClickPauseButton();
+        }
+
+        if (_ballsLeft <= 0)
+        {
+            _gameOverPanel.SetActive(true);
+        }
+        else if (LevelBuilder.BlocksLeft <= 0)
+        {
+            _winPanel.SetActive(true);
+        }
     }
 
     void DecreaseBallsNumber()
@@ -41,6 +66,11 @@ public class UIController : MonoBehaviour
     {
         Ball.OnDeath -= DecreaseBallsNumber;
         Block.OnBlockDeath -= IncreaseScore;
+    }
 
+    public void OnClickPauseButton()
+    {
+        Time.timeScale = 0;
+        _pauseMenu.SetActive(true);
     }
 }

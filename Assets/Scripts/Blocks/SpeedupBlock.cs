@@ -8,6 +8,7 @@ public class SpeedupBlock : Block
     void Start()
     {
         scorePoints = ConfigurationUtils.SpeedupBlockScorePoints;
+        _blockType = BlockType.Speedup;
 
     }
 }

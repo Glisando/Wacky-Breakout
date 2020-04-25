@@ -4,5 +4,8 @@ paddleMoveUnitsPerSecond,ballImpulseForce,minBallSpawnTime,maxBallSpawnTime,ball
 standardBlockSpawnChance,bonusBlockSpawnChance,freezerBlockSpawnChance,speedupBlockSpawnChance,
 0.7,0.3,0.05,0.05,
 
-standardBlockScorePoints,bonusBlockScorePoints,freezerBlockScorePoints,speedupBlockScorePoints
-1,2,5,5
+standardBlockScorePoints,bonusBlockScorePoints,freezerBlockScorePoints,speedupBlockScorePoints,
+1,2,5,5,
+
+pickupBlockImpulseForce,speedupMultiplier,freezTime
+100, 2, 2

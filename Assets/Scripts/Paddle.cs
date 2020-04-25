@@ -10,6 +10,7 @@ public class Paddle : MonoBehaviour
 
     private Rigidbody2D _rb2d;
     private BoxCollider2D _box2d;
+    private Timer _pauseTimer;
 
     private float _vx = 0f;
     private float _speed;
@@ -28,19 +29,26 @@ public class Paddle : MonoBehaviour
         _halfColliderWidth = _box2d.size.x / 2;
         _screenBorder = ScreenUtils.ScreenRight - _halfColliderWidth;
         _topEdge = transform.position.y + _box2d.size.y / 2.5f;
+
+        FreezerPickup.OnFreezerPickup += FreezerPickupHandler;
+        SpeedupPickup.OnSpeedupPickup += SpeedupPickupHandler;
+        _pauseTimer = gameObject.AddComponent<Timer>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        _vx = Input.GetAxis("Horizontal");
-
-        if (_vx != 0)
+        if (!_pauseTimer.Running)
         {
-            float speedThisFrame = _vx * _speed * Time.fixedDeltaTime;
-            float newXPosition = CheckBorders(speedThisFrame + transform.position.x);
-            
-            _rb2d.MovePosition(new Vector2(newXPosition, transform.position.y));
+            _vx = Input.GetAxis("Horizontal");
+
+            if (_vx != 0)
+            {
+                float speedThisFrame = _vx * _speed * Time.fixedDeltaTime;
+                float newXPosition = CheckBorders(speedThisFrame + transform.position.x);
+
+                _rb2d.MovePosition(new Vector2(newXPosition, transform.position.y));
+            }
         }
     }
 
@@ -76,5 +84,19 @@ public class Paddle : MonoBehaviour
                 ballScript.SetDirection(direction);
             }
         }
+    }
+
+    void FreezerPickupHandler()
+    {
+        _pauseTimer.Duration = ConfigurationUtils.FreezTime;
+        _pauseTimer.Run();
+    }
+
+    void SpeedupPickupHandler() { }
+
+    private void OnDestroy()
+    {
+        FreezerPickup.OnFreezerPickup -= FreezerPickupHandler;
+        SpeedupPickup.OnSpeedupPickup -= SpeedupPickupHandler;
     }
 }

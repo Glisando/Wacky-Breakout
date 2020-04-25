@@ -18,17 +18,20 @@ public class ConfigurationData
     static float ballImpulseForce = 200;
     static float minBallSpawnTime = 5f;
     static float maxBallSpawnTime = 10f;
-    static float ballsNumber = 10f;
+    static float ballsNumber = 5f;
 
     static float standardBlockSpawnChance = 0.7f;
     static float bonusBlockSpawnChance = 0.2f;
     static float freezerBlockSpawnChance = 0.05f;
     static float speedupBlockSpawnChance = 0.05f;
+    static float freezTime = 2f;
+    static float speedupMultiplier = 2f;
 
     static int standardBlockScorePoints = 1;
     static int bonusBlockScorePoints = 2;
     static int freezerBlockScorePoints = 5;
     static int speedupBlockScorePoints = 5;
+    static int pickupBlockImpulseForce = 100;
 
     #endregion
 
@@ -87,6 +90,16 @@ public class ConfigurationData
         get { return speedupBlockSpawnChance; }
     }
 
+    public float FreezTime
+    {
+        get { return freezTime; }
+    }
+
+    public float SpeedupMultiplier
+    {
+        get { return speedupMultiplier; }
+    }
+
     public int StandardBlockScorePoints
     {
         get { return standardBlockScorePoints; }
@@ -105,6 +118,11 @@ public class ConfigurationData
     public int SpeedupBlockScorePoints
     {
         get { return speedupBlockScorePoints; }
+    }
+
+    public int PickupBlockImpulseForce
+    {
+        get { return pickupBlockImpulseForce; }
     }
     #endregion
 
@@ -180,11 +198,14 @@ public class ConfigurationData
         bonusBlockSpawnChance = keyValue["bonusBlockSpawnChance"];
         freezerBlockSpawnChance = keyValue["freezerBlockSpawnChance"];
         speedupBlockSpawnChance = keyValue["speedupBlockSpawnChance"];
+        freezTime = keyValue["freezTime"];
+        speedupMultiplier = keyValue["speedupMultiplier"];
 
         standardBlockScorePoints = (int)keyValue["standardBlockScorePoints"];
         bonusBlockScorePoints = (int)keyValue["bonusBlockScorePoints"];
         freezerBlockScorePoints = (int)keyValue["freezerBlockScorePoints"];
         speedupBlockScorePoints = (int)keyValue["speedupBlockScorePoints"];
+        pickupBlockImpulseForce = (int)keyValue["pickupBlockImpulseForce"];
     }
 
     #endregion

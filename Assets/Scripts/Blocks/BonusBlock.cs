@@ -8,5 +8,6 @@ public class BonusBlock : Block
     void Start()
     {
         scorePoints = ConfigurationUtils.BonusBlockScorePoints;
+        _blockType = BlockType.Bonus;
     }
 }

@@ -23,11 +23,17 @@ public class LevelBuilder : MonoBehaviour
 
     [SerializeField] GameObject parentBlock;
 
+    [SerializeField] static List<GameObject> blocks;
     Transform parentBlockTransform;
     Vector2 _blockSize;
     float _screenWidth;
     float _rowWidth;
     float _blockNum = 15;
+
+    static public int BlocksLeft
+    {
+        get { return blocks.Count; }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +49,17 @@ public class LevelBuilder : MonoBehaviour
 
         parentBlockTransform = parentBlock.transform;
 
+        blocks = new List<GameObject>();
+
         SpawnBlocks();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RevomeAllBlocks();
+        }
     }
 
     void SpawnBlocks()
@@ -63,11 +79,28 @@ public class LevelBuilder : MonoBehaviour
             for (int x = 0; x < _blockNum; x++)
             {
                 GameObject tmp = Instantiate(ChooseBlockToSpawn(), currentPos, Quaternion.identity);
+                blocks.Add(tmp);
                 tmp.transform.parent = parentBlockTransform;
 
                 currentPos.x += _blockSize.x;
             }
         }
+    }
+
+    static public void RemoveBlock(GameObject block)
+    {
+        blocks.Remove(block);
+        Destroy(block);
+    }
+
+    void RevomeAllBlocks()
+    {
+        foreach(var block in blocks)
+        {
+            Destroy(block);
+        }
+
+        blocks.Clear();
     }
 
     GameObject ChooseBlockToSpawn()
@@ -89,3 +122,4 @@ public class LevelBuilder : MonoBehaviour
         }
     }
 }
+;

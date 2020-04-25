@@ -8,5 +8,7 @@ public class StandardBlock : Block
     void Start()
     {
         scorePoints = ConfigurationUtils.StandardBlockScorePoints;
+        _blockType = BlockType.Standard;
+
     }
 }

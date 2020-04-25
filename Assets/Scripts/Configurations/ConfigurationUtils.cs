@@ -59,6 +59,16 @@ public static class ConfigurationUtils
         get { return configurationData.SpeedupBlockSpawnChance; }
     }
 
+    public static float FreezTime
+    {
+        get { return configurationData.FreezTime; }
+    }
+
+    public static float SpeedupMultiplier
+    {
+        get { return configurationData.SpeedupMultiplier; }
+    }
+
     public static int StandardBlockScorePoints
     {
         get { return configurationData.StandardBlockScorePoints; }
@@ -77,6 +87,11 @@ public static class ConfigurationUtils
     public static int SpeedupBlockScorePoints
     {
         get { return configurationData.SpeedupBlockScorePoints; }
+    }
+
+    public static int PickupBlockImpulseForce
+    {
+        get { return configurationData.PickupBlockImpulseForce; }
     }
     #endregion
 

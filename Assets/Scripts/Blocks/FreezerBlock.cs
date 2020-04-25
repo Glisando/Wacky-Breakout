@@ -8,6 +8,6 @@ public class FreezerBlock : Block
     void Start()
     {
         scorePoints = ConfigurationUtils.FreezerBlockScorePoints;
-
+        _blockType = BlockType.Freezer;
     }
 }

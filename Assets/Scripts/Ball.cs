@@ -3,11 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider2D), typeof(Rigidbody2D))]
 public class Ball : MonoBehaviour
 {
     #region Fields
 
     public static Action OnDeath;
+
+    const float AngleHalfRange = 180 * Mathf.Deg2Rad;
 
     enum States
     {
@@ -19,11 +22,12 @@ public class Ball : MonoBehaviour
 
     Timer _startDelayTimer;
     Timer _deathTimer;
+    Timer _speedupTimer;
+
     Dictionary<States, System.Action> _states;
 
     States _currentState;
 
-    const float AngleHalfRange = 180 * Mathf.Deg2Rad;
     private Rigidbody2D _rb2d;
     private BoxCollider2D _box2d;
     private Transform _transform;
@@ -47,7 +51,14 @@ public class Ball : MonoBehaviour
         _deathTimer = gameObject.AddComponent<Timer>();
         _deathTimer.Duration = 10f;
 
+        _speedupTimer = gameObject.AddComponent<Timer>();
+        _speedupTimer.Duration = 2f;
+
         _currentState = States.Idle;
+        _rb2d.bodyType = RigidbodyType2D.Static;
+
+        SpeedupPickup.OnSpeedupPickup += SpeedupPickupHandler;
+
     }
 
     // Update is called once per frame
@@ -71,6 +82,8 @@ public class Ball : MonoBehaviour
         float angle = Mathf.PI / 2 + AngleHalfRange;
 
         Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+
+        _rb2d.bodyType = RigidbodyType2D.Dynamic;
         _rb2d.AddForce(direction * ConfigurationUtils.BallImpulseForce);
 
         _deathTimer.Run();
@@ -82,6 +95,11 @@ public class Ball : MonoBehaviour
         if (_deathTimer.Finished)
         {
             _currentState = States.Death;
+        }
+
+        if (_speedupTimer.Finished)
+        {
+            
         }
         ClampByMaxVelocity();
     }
@@ -96,8 +114,6 @@ public class Ball : MonoBehaviour
     }
 
     #endregion
-
-    #region Utils Methods
 
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -132,8 +148,17 @@ public class Ball : MonoBehaviour
         }
     }
 
-    #endregion
+    void SpeedupPickupHandler()
+    {
+        Debug.Log("SPEEEEDUP");
+        _rb2d.velocity *= ConfigurationUtils.SpeedupMultiplier;
+        //_speedupTimer.Run();
+    }
+
+    private void OnDestroy()
+    {
+        SpeedupPickup.OnSpeedupPickup -= SpeedupPickupHandler;
+    }
 
     #endregion
-
 }

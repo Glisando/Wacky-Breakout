@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7287026707592834377}
   - component: {fileID: 7287026707592834382}
   - component: {fileID: 7287026707592834383}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Paddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,13 +73,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1752325601756338263, guid: b9ce4450acfde4f56a82c246f231ed24,
+  m_Sprite: {fileID: 4284310907060622113, guid: b9ce4450acfde4f56a82c246f231ed24,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2, y: 0.5}
+  m_Size: {x: 2, y: 0.4375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -123,8 +123,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 0.5}
-    newSize: {x: 2, y: 0.5}
+    oldSize: {x: 2, y: 0.4375}
+    newSize: {x: 2, y: 0.4375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
